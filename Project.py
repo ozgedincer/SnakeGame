@@ -8,8 +8,6 @@ pygame.init()
 mixer.music.load('bgm.mp3')
 mixer.music.play(-1)
 
-#pygame.display.set_icon(pygame.image.load(“gameover.png”))
-
 velocity = 0.10
 
 window = turtle.Screen()
