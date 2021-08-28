@@ -4,16 +4,15 @@ import time
 import pygame
 from pygame import mixer
 
-"""pygame.init()
+"pygame.init()
 mixer.music.load('bgm.mp3')
-mixer.music.play(-1)"""
+mixer.music.play(-1)
 
-<<<<<<< HEAD
+
 point = 0
 high_score = 0
 
-=======
->>>>>>> d069269fe8c9f9d8b4eefe57fc273968bb79d7fc
+
 velocity = 0.10
 
 
