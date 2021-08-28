@@ -4,17 +4,19 @@ import time
 import pygame
 from pygame import mixer
 
-pygame.init()
+"""pygame.init()
 mixer.music.load('bgm.mp3')
-mixer.music.play(-1)
+mixer.music.play(-1)"""
 
-#pygame.display.set_icon(pygame.image.load(“gameover.png”))
+point = 0
+high_score = 0
 
 velocity = 0.10
 
+
 window = turtle.Screen()
 window.title('Snake Game')
-window.bgcolor('pink')
+window.bgcolor("pink")
 window.setup(width=600, height=600)
 window.tracer(0)
 
@@ -35,14 +37,15 @@ bait.shapesize(0.80, 0.80)
 bait.goto(0, 0)
 
 tails = []
-point = 0
+
 
 board = turtle.Turtle()
 board.speed(0)
 board.penup()
 board.hideturtle()
 board.goto(-290, 265)
-board.write("Score: {}".format(point), font=("Times New Roman", 24, "normal"))
+board.write("Score:0   High Score: 0", font=("Times New Roman", 24, "normal"))
+    
 
 def move():
     if head.direction == "up":
@@ -79,7 +82,7 @@ window.onkey(go_left, "Left")
 
 while True:
     window.update()
-
+   
     if head.xcor() > 300 or head.xcor() < -300 or head.ycor() > 300 or head.ycor() < -300:
         time.sleep(1)
         head.goto(0, 0)
@@ -88,12 +91,14 @@ while True:
         for tail in tails:
             tail.goto(1000, 1000)
         tails = []
-
         point = 0
         velocity = 0.10
-
+        
         board.clear()
-        board.write("Score: {}".format(point), font=("Times New Roman", 24, "normal"))
+        board.write("Score: {}   High Score: {}".format(point, high_score), font=("Times New Roman", 24, "normal"))
+
+    
+        
 
     if head.distance(bait) < 20:
         x = random.randint(-250, 250)
@@ -105,14 +110,19 @@ while True:
         new_tail.shape("circle")
         new_tail.color("green")
         new_tail.penup()
+
         tails.append(new_tail)
 
         velocity = velocity + 0.0001
-
         point = point + 5
-        board.clear()
-        board.write("Score: {}".format(point), font=("Times New Roman", 24, "normal"))
 
+        if point > high_score:             
+            high_score = point
+            
+        board.clear()
+        board.write("Score: {}   High Score: {}".format(point, high_score), font=("Times New Roman", 24, "normal"))
+        
+    
 
     for index in range(len(tails) - 1, 0, -1):
         x = tails[index - 1].xcor()
@@ -136,7 +146,7 @@ while True:
             tails = []
             point = 0
             board.clear()
-            board.write("Score: {}".format(point), font=("Times New Roman", 24, "normal"))
+            board.write("Score: {}   High Score: {}".format(point, high_score), font=("Times New Roman", 24, "normal"))
             velocity = 0.15
 
     time.sleep(velocity)
