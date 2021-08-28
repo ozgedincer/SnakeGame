@@ -4,7 +4,7 @@ import time
 import pygame
 from pygame import mixer
 
-"pygame.init()
+pygame.init()
 mixer.music.load('bgm.mp3')
 mixer.music.play(-1)
 
